@@ -4,6 +4,3 @@
  (preprocess
   (pps ppx_inline_test))
  (libraries adder))
-
-(test
- (name test_adder))
