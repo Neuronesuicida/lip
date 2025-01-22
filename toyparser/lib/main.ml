@@ -1,3 +1,4 @@
+open Parser
 open Ast
 
 (* parse : string -> ast *)
