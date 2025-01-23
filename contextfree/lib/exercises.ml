@@ -79,11 +79,11 @@ let same_amount : grammar =
     terminals = [ '0'; '1' ];
     productions =
       [
-        S --> "0S1";
-        S --> "1S0";
-        S --> "01S";
-        S --> "10S";
-        S --> ""; 
+        S --> "0S1";  (* 0 *)
+        S --> "1S0";  (* 1 *)
+        S --> "01S";  (* 2 *)
+        S --> "10S";  (* 3 *)
+        S --> "";     (* 4 *)
       ];
     start = S;
   }

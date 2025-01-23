@@ -23,5 +23,22 @@ let string_of_tokenlist tl =
 let string_of_frequencies fl =
   List.fold_left (fun s (t,n) -> s ^ ((string_of_token t) ^ " -> " ^ string_of_int n ^ "\n")) "" fl
 
+  (* take : int -> 'a list -> 'a list *)
+let rec take n lst =
+  match (n, lst) with
+  | (0, _) | (_, []) -> []
+  | (n, x :: xs) -> x :: take (n - 1) xs
+
 (* frequency : int -> 'a list -> ('a * int) list *)
-let frequency _ _ = failwith("TODO")
+let frequency n lst =
+  (* Conta le occorrenze di ciascun elemento nella lista *)
+  let counts = List.fold_left (fun acc x ->
+    match List.assoc_opt x acc with
+    | Some count -> (x, count + 1) :: List.remove_assoc x acc
+    | None -> (x, 1) :: acc
+  ) [] lst in
+  (* Ordina gli elementi per numero di occorrenze decrescente *)
+  let sorted = List.sort (fun (_, count1) (_, count2) -> compare count2 count1) counts in
+  (* Prendi solo i primi n elementi *)
+  take n sorted
+
